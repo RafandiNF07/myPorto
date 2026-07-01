@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* === Premium Minimalist Monochrome Palette === */
+  --color-base: #000000;
+  --color-surface: #09090B;
+  --color-card: #121212;
+
+  /* Neutrals */
+  --color-text-main: #FFFFFF;
+  --color-text-sec: #A1A1AA;
+  --color-text-muted: #A1A1AA; /* Improved contrast for accessibility */
+  
+  --color-border-default: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+
+  /* === Typography === */
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Manual CSS overrides for Tailwind v4 bug */
+@layer utilities {
+  .text-text-main { color: #FFFFFF !important; }
+  .text-text-sec { color: #A1A1AA !important; }
+  .text-text-muted { color: #A1A1AA !important; }
+}
+
+/* === Base Styles === */
+@layer base {
+  :root {
+    --color-text-main: #FFFFFF;
+    --color-text-sec: #A1A1AA;
+    --color-text-muted: #A1A1AA;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-base);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Extremely subtle noise for texture, barely visible */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFF;
+  }
+
+  /* Global Focus Visible for Keyboard Users */
+  *:focus-visible {
+    outline: 2px solid #FFF;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* === Minimal Utilities === */
+@layer utilities {
+
+  /* Clean, elegant card without any neon glows */
+  .minimal-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border-default);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .minimal-card:hover {
+    border-color: var(--color-border-hover);
+    /* Subtle elevation */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ── MOTION LANGUAGE ── */
+  .motion-fade {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .motion-fade.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .motion-slide {
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .motion-slide.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .motion-page-reveal {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.9s cubic-bezier(0.7, 0, 0.2, 1), opacity 0.5s;
+  }
+  .motion-page-reveal.is-visible {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* ── TAGS/BADGES ── */
+  .tag-minimal {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--color-text-sec);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .tag-minimal:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #FFF;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-fade, .motion-slide, .motion-page-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Projects | Rafa">
+  <main class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    
+    <div class="mb-12 border-b border-white/5 pb-8 mt-12 md:mt-24">
+      <span class="tag-minimal uppercase tracking-widest text-xs font-sans mb-6 inline-block">Archive</span>
+      <h1 class="font-display font-semibold text-4xl md:text-5xl text-white tracking-tight mb-4">All Projects.</h1>
+      <p class="text-text-sec font-sans text-sm md:text-base max-w-xl">
+        A complete log of systems built and deployed.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto">
+      {
+        projects.map((project, index) => (
+          <ProjectCard project={project} index={index} />
+        ))
+      }
+    </div>
+    
+    {projects.length === 0 && (
+      <div class="text-center py-20 text-text-muted font-sans text-sm uppercase tracking-widest border border-white/5 rounded-3xl mt-12">
+        No projects found.
+      </div>
+    )}
+  </main>
+</Layout>

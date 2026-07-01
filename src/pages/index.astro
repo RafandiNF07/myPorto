@@ -1,17 +1,90 @@
 ---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/BaseLayout.astro";
+import HeroSystem from "../components/HeroSystem.astro";
+import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
+import Certifications from "../components/Certifications.astro";
+import BlogList from "../components/BlogList.astro";
+import Contact from "../components/Contact.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
+const featuredProjects = (await getCollection("projects"))
+  .filter((p) => p.data.featured && !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Rafa">
+  <main class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto">
+      <!-- Section A: Hero -->
+      <HeroSystem />
+
+      <!-- Section B: Projects (Mission History) -->
+      <div
+        id="work"
+        class="md:col-span-12 mt-24 mb-6 flex justify-between items-end border-b border-white/5 pb-6 scroll-mt-32"
+      >
+        <div>
+          <span
+            class="tag-minimal uppercase tracking-widest text-xs font-sans mb-4 md:mb-6 inline-block"
+            >Work</span
+          >
+          <h2
+            class="font-display font-semibold text-3xl md:text-4xl text-white tracking-tight"
+          >
+            Featured Projects.
+          </h2>
+        </div>
+        <a
+          href="/projects"
+          class="hidden md:inline-flex px-6 py-2 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+          >View All →</a
+        >
+      </div>
+
+      {
+        featuredProjects.map((project, index) => (
+          <ProjectCard project={project} index={index} />
+        ))
+      }
+
+      <div class="md:col-span-12 flex justify-center mt-6 md:hidden">
+        <a
+          href="/projects"
+          class="px-6 py-3 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+        >
+          View All Projects →
+        </a>
+      </div>
+
+      <!-- Section C: About -->
+      <div class="md:col-span-12 mt-20">
+        <About />
+      </div>
+
+      <!-- Section D: Skills -->
+      <div class="md:col-span-12 mt-20">
+        <Skills />
+      </div>
+
+      <!-- Section E: Certifications -->
+      <div class="md:col-span-12 mt-20">
+        <Certifications />
+      </div>
+
+      <!-- Section F: BlogList -->
+      <div class="md:col-span-12 mt-20">
+        <BlogList />
+      </div>
+
+      <!-- Section G: Contact -->
+      <div class="md:col-span-12 mt-24">
+        <Contact />
+      </div>
+    </div>
+  </main>
+
+
+</Layout>

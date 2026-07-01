@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import profileImg from "../assets/profile.png";
+---
+
+<section
+  id="about"
+  class="md:col-span-12 minimal-card border border-white/[0.04] rounded-3xl p-8 md:p-12 relative overflow-hidden scroll-mt-32 motion-fade opacity-0"
+>
+  <div
+    class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
+  >
+    <div class="md:col-span-4 relative group">
+      <div
+        class="aspect-square md:aspect-[3/4] overflow-hidden rounded-2xl relative border border-white/5 bg-black/50"
+      >
+        <Image
+          src={profileImg}
+          alt="Rafandi Nova Fitra"
+          class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+        />
+      </div>
+    </div>
+
+    <div class="md:col-span-8 flex flex-col justify-center">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="tag-minimal uppercase tracking-widest text-xs font-sans"
+          >About Me</span
+        >
+      </div>
+
+      <h2
+        class="font-display font-semibold text-3xl md:text-5xl text-white mb-8 tracking-tight"
+      >
+        Systems thinker.
+      </h2>
+
+      <div
+        class="space-y-6 text-text-sec leading-[1.8] text-base md:text-lg max-w-2xl font-sans"
+      >
+        <p>
+          I'm an Informatics student who enjoys designing backend systems and spends free time exploring Linux internals and cybersecurity.
+        </p>
+        <p>
+          My engineering philosophy is simple: <strong
+            class="text-white font-medium"
+            >build things that don't wake you up at 3 AM</strong
+          >. From implementing rate limiters to designing task queues, I enjoy
+          getting my hands dirty with low-level system design and performance
+          optimization.
+        </p>
+      </div>
+
+      <div
+        class="flex items-center flex-wrap gap-8 border-t border-white/5 pt-8 mt-4"
+      >
+        <div class="text-xs font-sans text-text-muted uppercase tracking-wider">
+          <span class="block text-white/30 mb-2">Focus</span>
+          <span class="text-white font-medium">Backend Engineering</span>
+        </div>
+        <div class="text-xs font-sans text-text-muted uppercase tracking-wider">
+          <span class="block text-white/30 mb-2">Location</span>
+          <span class="text-white font-medium">Based in Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

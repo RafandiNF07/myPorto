@@ -1,0 +1,50 @@
+---
+import { navLinks } from "../data/nav";
+---
+
+<header
+  id="main-nav"
+  class="fixed top-6 inset-x-0 z-50 pointer-events-none anim-hidden"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 md:px-8 flex justify-center md:justify-between items-center pointer-events-auto"
+  >
+    <!-- Logo HUD -->
+    <a
+      href="/#top"
+      class="hidden md:flex items-center gap-3 group bg-base/90 backdrop-blur-md border border-[rgba(255,255,255,0.06)] px-4 py-2 rounded-2xl hover:border-[rgba(255,255,255,0.12)] transition-all duration-500 nav-floating"
+    >
+      <div class="flex flex-col">
+        <span class="font-display font-bold text-white leading-none"
+          >Rafandi</span
+        >
+        <span
+          class="font-mono text-[8px] text-sage tracking-[0.2em] uppercase mt-0.5"
+          >Backend Engineer</span
+        >
+      </div>
+    </a>
+
+    <!-- Nav Pill -->
+    <nav
+      class="bg-base/90 backdrop-blur-md border border-[rgba(255,255,255,0.06)] p-1.5 rounded-full flex items-center nav-floating"
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="nav-item px-4 sm:px-5 min-h-[44px] flex items-center rounded-full font-mono text-[10px] sm:text-xs tracking-widest uppercase"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+      <div class="w-px h-4 bg-[rgba(255,255,255,0.05)] mx-1"></div>
+      <a
+        href="#contact"
+        class="btn-cta px-4 sm:px-5 min-h-[44px] flex items-center rounded-full font-mono text-[10px] sm:text-xs tracking-widest uppercase"
+        >Connect</a
+      >
+    </nav>
+  </div>
+</header>

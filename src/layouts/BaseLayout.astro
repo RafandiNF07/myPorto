@@ -1,0 +1,57 @@
+---
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SEOHead from "../components/SEOHead.astro";
+import MotionObserver from "../components/MotionObserver.astro";
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const siteTitle = "Rafa | Backend Developer";
+const siteDescription = "Rafandi Nova Fitra - Backend Developer & IT Student";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <SEOHead
+      title={`${title} | ${siteTitle}`}
+      description={description ?? siteDescription}
+    />
+  </head>
+  <body
+    class="bg-base text-text-main min-h-screen font-sans selection:bg-sage/30 relative"
+  >
+    <!-- SCANLINE OVERLAY -->
+    <div class="scanline-overlay"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- SYSTEM NERVE (Global Background Connection) -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
+      <svg class="w-full h-full text-white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 15% 0 L 15% 100% M 85% 0 L 85% 100%" fill="none" stroke="currentColor" stroke-width="0.5" />
+        <path d="M 50% 0 L 50% 15% L 65% 30% L 65% 70% L 50% 85% L 50% 100%" fill="none" stroke="currentColor" stroke-width="0.5" />
+        <path d="M 35% 20% L 35% 80%" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 4" />
+        
+        <circle cx="15%" cy="20%" r="2" fill="currentColor" />
+        <circle cx="85%" cy="40%" r="2" fill="currentColor" />
+        <circle cx="50%" cy="15%" r="2.5" fill="currentColor" />
+        <circle cx="65%" cy="30%" r="2.5" fill="currentColor" />
+        <circle cx="65%" cy="70%" r="2.5" fill="currentColor" />
+        <circle cx="50%" cy="85%" r="2.5" fill="currentColor" />
+        <circle cx="35%" cy="50%" r="2" fill="currentColor" />
+
+        <path d="M 15% 20% L 35% 20% M 65% 30% L 85% 30% M 35% 70% L 65% 70%" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <Navbar />
+    <slot />
+    <Footer />
+    <MotionObserver />
+  </body>
+</html>

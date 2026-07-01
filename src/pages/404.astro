@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+---
+
+<Layout title="404 - Page Not Found">
+  <main class="relative z-10 max-w-4xl mx-auto px-4 md:px-8 py-32 md:py-48 text-center flex flex-col items-center justify-center min-h-[70vh]">
+    <div class="motion-slide is-visible">
+      <span class="tag-minimal uppercase tracking-widest text-xs font-sans mb-6 inline-block">Error 404</span>
+      <h1 class="font-display font-semibold text-5xl md:text-7xl text-white tracking-tight mb-6" style="text-wrap: balance;">
+        Page Not Found.
+      </h1>
+      <p class="font-sans text-text-muted text-lg max-w-md mx-auto mb-10 leading-relaxed" style="text-wrap: balance;">
+        The page you are looking for doesn't exist or has been moved. Let's get you back on track.
+      </p>
+      
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium text-sm rounded-full hover:bg-neutral-200 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B] focus-visible:ring-white"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Return Home
+      </a>
+    </div>
+  </main>
+</Layout>

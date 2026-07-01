@@ -1,0 +1,79 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Layout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} | Rafa`}>
+  <main class="relative z-10 max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    
+    <a href="/blog" class="inline-flex items-center gap-2 font-sans text-xs text-text-muted hover:text-white uppercase tracking-wider transition-colors mb-12 mt-12">
+      ← Back to Journal
+    </a>
+
+    <article class="prose prose-invert max-w-none prose-p:text-text-sec prose-headings:text-white prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-strong:text-white prose-ul:text-text-sec prose-ol:text-text-sec prose-li:text-text-sec prose-a:text-sage hover:prose-a:text-white prose-a:transition-colors prose-pre:bg-[#09090b] prose-pre:border prose-pre:border-white/5 prose-code:font-mono prose-code:text-text-sec prose-code:bg-[#09090b] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:border prose-img:border-white/5 prose-img:rounded-2xl prose-hr:border-white/5 prose-blockquote:text-text-sec prose-blockquote:border-white/20">
+      
+      <header class="mb-12 not-prose">
+        <h1 class="font-display font-semibold text-4xl md:text-5xl text-white mb-6 leading-tight tracking-tight">
+          {post.data.title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-4 border-y border-white/5 py-4 mb-8">
+          <time datetime={post.data.pubDate.toISOString()} class="font-mono text-xs text-text-sec">
+            {
+              post.data.pubDate.toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
+          </time>
+          {
+            post.data.updatedDate && (
+              <>
+                <span class="text-white/10">|</span>
+                <time datetime={post.data.updatedDate.toISOString()} class="font-mono text-xs text-text-sec">
+                  Updated: {
+                    post.data.updatedDate.toLocaleDateString('en-us', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })
+                  }
+                </time>
+              </>
+            )
+          }
+        </div>
+      </header>
+
+      <Content />
+      
+    </article>
+
+    <div class="mt-20 pt-8 border-t border-white/5 flex justify-between items-center">
+      <div class="flex gap-2">
+        {post.data.tags.map((tag) => (
+          <span class="tag-minimal">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <a href="#" class="font-sans text-xs text-text-sec hover:text-white uppercase tracking-wider transition-colors">
+        ↑ Top
+      </a>
+    </div>
+
+  </main>
+</Layout>

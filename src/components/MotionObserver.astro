@@ -1,0 +1,26 @@
+---
+---
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Select all elements with motion classes
+    const animatedElements = document.querySelectorAll(
+      ".motion-fade, .motion-slide, .motion-page-reveal",
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+</script>

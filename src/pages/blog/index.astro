@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog | Rafa">
+  <main class="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    
+    <div class="mb-12 border-b border-white/5 pb-8 mt-12 md:mt-24">
+      <span class="tag-minimal uppercase tracking-widest text-xs font-sans mb-6 inline-block">Writing</span>
+      <h1 class="font-display font-semibold text-4xl md:text-5xl text-white tracking-tight mb-4">Journal.</h1>
+      <p class="text-text-sec font-sans text-sm md:text-base max-w-xl">
+        Articles on backend engineering, Linux, and security.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6">
+      {
+        posts.map((post) => (
+          <BlogCard post={post} />
+        ))
+      }
+    </div>
+    
+    {posts.length === 0 && (
+      <div class="text-center py-20 text-text-muted font-sans text-sm uppercase tracking-widest border border-white/5 rounded-3xl mt-12">
+        No logs found.
+      </div>
+    )}
+  </main>
+</Layout>

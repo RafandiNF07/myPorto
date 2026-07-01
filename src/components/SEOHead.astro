@@ -1,0 +1,67 @@
+---
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = "/og-image.png",
+} = Astro.props;
+
+// Mengambil URL website kita saat ini
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || siteConfig.url,
+);
+---
+
+<!-- 1. Meta Tags Standar -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- 2. Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content={siteConfig.author} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- 3. Open Graph / Facebook (Tampil saat link dibagikan) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, canonicalURL)} />
+
+<!-- 4. Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+<!-- 5. JSON-LD Schema (Memberitahu Google secara spesifik siapa Anda) -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": siteConfig.name,
+  "url": siteConfig.url,
+  "jobTitle": siteConfig.jobTitle,
+  "description": siteConfig.description,
+  "sameAs": [
+    siteConfig.socials.github,
+    siteConfig.socials.linkedin
+  ],
+  "knowsAbout": siteConfig.knowsAbout
+})}>
+</script>
+
+<!-- 6. Analytics (Plausible) -->
+<script is:inline defer data-domain="rafandi.me" src="https://plausible.io/js/script.js"></script>
