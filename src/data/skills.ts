@@ -25,5 +25,5 @@ export const capabilities: readonly SkillCategory[] = [
 export const currentlyLearning: readonly string[] = [
   "Cybersecurity",
   "Linux Internals",
-  "Reverse Engineering"
+  "Web Penetration Testing",
 ] as const;

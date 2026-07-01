@@ -10,7 +10,7 @@ interface Props {
 const {
   title = siteConfig.title,
   description = siteConfig.description,
-  image = "/og-image.png",
+  image = "/ogImage.svg",
 } = Astro.props;
 
 // Mengambil URL website kita saat ini
@@ -62,6 +62,3 @@ const canonicalURL = new URL(
   "knowsAbout": siteConfig.knowsAbout
 })}>
 </script>
-
-<!-- 6. Analytics (Plausible) -->
-<script is:inline defer data-domain="rafandi.me" src="https://plausible.io/js/script.js"></script>
