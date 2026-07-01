@@ -3,9 +3,10 @@
 
 @theme {
   /* === Premium Minimalist Monochrome Palette === */
-  --color-base: #000000;
-  --color-surface: #09090B;
-  --color-card: #121212;
+  --color-base: #0a0a0a;
+  --color-surface: #111111;
+  --color-card: #18181b;
+  --color-sage: #7aa89a;
 
   /* Neutrals */
   --color-text-main: #FFFFFF;
@@ -16,8 +17,8 @@
   --color-border-hover: rgba(255, 255, 255, 0.15);
 
   /* === Typography === */
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Inter", sans-serif;
+  --font-sans: "Geist Variable", "Geist", sans-serif;
+  --font-display: "Geist Variable", "Geist", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -128,6 +129,15 @@
   .tag-minimal:hover {
     background: rgba(255, 255, 255, 0.06);
     color: #FFF;
+  }
+
+  .active-press {
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .active-press:active {
+    transform: translateY(1px) scale(0.98);
   }
 }
 

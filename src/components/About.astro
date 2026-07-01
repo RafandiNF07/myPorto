@@ -1,23 +1,27 @@
 ---
 import { Image } from "astro:assets";
-import profileImg from "../assets/profile.png";
+import profileImg from "../assets/profile2.png";
 ---
 
 <section
   id="about"
-  class="md:col-span-12 minimal-card border border-white/[0.04] rounded-3xl p-8 md:p-12 relative overflow-hidden scroll-mt-32 motion-fade opacity-0"
+  class="md:col-span-12 minimal-card border border-white/4 rounded-3xl p-8 md:p-12 relative overflow-hidden scroll-mt-32 motion-fade opacity-0"
 >
   <div
     class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
   >
     <div class="md:col-span-4 relative group">
       <div
-        class="aspect-square md:aspect-[3/4] overflow-hidden rounded-2xl relative border border-white/5 bg-black/50"
+        class="absolute -inset-x-14 -inset-y-16 bg-linear-to-r from-card via-card/25 to-transparent blur-3xl opacity-90 pointer-events-none"
+        aria-hidden="true"
       >
+      </div>
+      <div class="aspect-square md:aspect-3/4 overflow-hidden relative isolate">
         <Image
           src={profileImg}
           alt="Rafandi Nova Fitra"
-          class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+          class="w-full h-full object-cover object-top scale-[1.05]"
+          style=" -webkit-mask-image: radial-gradient( ellipse 100% 100% at center, black 40%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.3) 70%, transparent 100% ); mask-image: radial-gradient( ellipse 55% 50% at center, black 35%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.3) 65%, transparent 100% ); "
         />
       </div>
     </div>
@@ -36,10 +40,12 @@ import profileImg from "../assets/profile.png";
       </h2>
 
       <div
-        class="space-y-6 text-text-sec leading-[1.8] text-base md:text-lg max-w-2xl font-sans"
+        class="space-y-6 leading-[1.8] text-base md:text-lg max-w-2xl font-sans"
+        style="color: var(--color-text-sec);"
       >
         <p>
-          I'm an Informatics student who enjoys designing backend systems and spends free time exploring Linux internals and cybersecurity.
+          I'm an Informatics student who enjoys designing backend systems and
+          spends free time exploring Linux internals and cybersecurity.
         </p>
         <p>
           My engineering philosophy is simple: <strong

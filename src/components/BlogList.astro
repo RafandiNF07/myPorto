@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import BlogCard from './BlogCard.astro';
+import { getCollection } from "astro:content";
+import BlogCard from "./BlogCard.astro";
 
-const posts = (await getCollection('blog'))
+const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
@@ -10,21 +10,28 @@ const posts = (await getCollection('blog'))
 <section id="blog" class="md:col-span-12 scroll-mt-32 relative z-10">
   <div class="mb-6 flex justify-between items-end border-b border-white/5 pb-6">
     <div>
-      <span class="tag-minimal uppercase tracking-widest text-xs font-sans mb-4 md:mb-6 inline-block">Writing</span>
-      <h2 class="font-display font-semibold text-3xl md:text-4xl text-white tracking-tight">Journal.</h2>
+      <h2
+        class="font-display font-semibold text-3xl md:text-4xl text-white tracking-tight"
+      >
+        Engineering Notes.
+      </h2>
     </div>
-    <a href="/blog" class="hidden md:inline-flex px-6 py-2 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300">View All →</a>
+    <a
+      href="/blog"
+      class="hidden md:inline-flex px-6 py-2 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+      >View All →</a
+    >
   </div>
 
   <div class="grid grid-cols-1 gap-6">
-    {
-      posts.map((post) => (
-        <BlogCard post={post} />
-      ))
-    }
+    {posts.map((post) => <BlogCard post={post} />)}
   </div>
-  
+
   <div class="md:hidden flex justify-center mt-6">
-    <a href="/blog" class="px-6 py-3 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300">View All Posts →</a>
+    <a
+      href="/blog"
+      class="px-6 py-3 text-text-sec font-sans text-sm rounded-full border border-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+      >View All Posts →</a
+    >
   </div>
 </section>
