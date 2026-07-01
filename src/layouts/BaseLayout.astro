@@ -32,38 +32,47 @@ const siteDescription = "Rafandi Nova Fitra - Backend Developer & IT Student";
 
     <!-- SYSTEM NERVE (Global Background Connection) -->
     <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.03]">
-      <svg class="w-full h-full text-white" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        class="w-full h-full text-white"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+      >
+        <!-- Vertical lines -->
         <path
-          d="M 15% 0 L 15% 100% M 85% 0 L 85% 100%"
-          fill="none"
+          d="M15 0 L15 100 M85 0 L85 100"
           stroke="currentColor"
           stroke-width="0.5"></path>
+
+        <!-- Main connection -->
         <path
-          d="M 50% 0 L 50% 15% L 65% 30% L 65% 70% L 50% 85% L 50% 100%"
-          fill="none"
+          d="M50 0 L50 15 L65 30 L65 70 L50 85 L50 100"
           stroke="currentColor"
           stroke-width="0.5"></path>
+
+        <!-- Dashed line -->
         <path
-          d="M 35% 20% L 35% 80%"
-          fill="none"
+          d="M35 20 L35 80"
           stroke="currentColor"
           stroke-width="0.5"
-          stroke-dasharray="4 4"></path>
+          stroke-dasharray="2 2"></path>
 
-        <circle cx="15%" cy="20%" r="2" fill="currentColor"></circle>
-        <circle cx="85%" cy="40%" r="2" fill="currentColor"></circle>
-        <circle cx="50%" cy="15%" r="2.5" fill="currentColor"></circle>
-        <circle cx="65%" cy="30%" r="2.5" fill="currentColor"></circle>
-        <circle cx="65%" cy="70%" r="2.5" fill="currentColor"></circle>
-        <circle cx="50%" cy="85%" r="2.5" fill="currentColor"></circle>
-        <circle cx="35%" cy="50%" r="2" fill="currentColor"></circle>
-
+        <!-- Side connections -->
         <path
-          d="M 15% 20% L 35% 20% M 65% 30% L 85% 30% M 35% 70% L 65% 70%"
-          fill="none"
+          d="M15 20 L35 20 M65 30 L85 30 M35 70 L65 70"
           stroke="currentColor"
           stroke-width="0.5"
           opacity="0.5"></path>
+
+        <!-- Nodes -->
+        <circle cx="15" cy="20" r="0.8" fill="currentColor"></circle>
+        <circle cx="85" cy="40" r="0.8" fill="currentColor"></circle>
+        <circle cx="50" cy="15" r="1" fill="currentColor"></circle>
+        <circle cx="65" cy="30" r="1" fill="currentColor"></circle>
+        <circle cx="65" cy="70" r="1" fill="currentColor"></circle>
+        <circle cx="50" cy="85" r="1" fill="currentColor"></circle>
+        <circle cx="35" cy="50" r="0.8" fill="currentColor"></circle>
       </svg>
     </div>
 
