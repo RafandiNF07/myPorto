@@ -10,7 +10,7 @@ interface Props {
 const {
   title = siteConfig.title,
   description = siteConfig.description,
-  image = "/ogImage.svg",
+  image = "/ogImagePng.png",
 } = Astro.props;
 
 // Mengambil URL website kita saat ini
@@ -35,10 +35,13 @@ const canonicalURL = new URL(
 
 <!-- 3. Open Graph / Facebook (Tampil saat link dibagikan) -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content="en_US" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, canonicalURL)} />
+<meta property="og:image:alt" content={title} />
 
 <!-- 4. Twitter -->
 <meta property="twitter:card" content="summary_large_image" />

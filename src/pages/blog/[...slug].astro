@@ -15,7 +15,11 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={`${post.data.title} | Rafa`}>
+<Layout
+  title={`${post.data.title} | Rafa`}
+  description={post.data.description}
+  image={post.data.heroImage?.src}
+>
   <main class="relative z-10 max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
     
     <a href="/blog" class="inline-flex items-center gap-2 font-sans text-xs text-text-muted hover:text-white uppercase tracking-wider transition-colors mb-12 mt-12">
