@@ -1,0 +1,67 @@
+---
+import { siteConfig } from "../config/site";
+
+interface Crumb {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+
+// Absolute URL builder untuk JSON-LD (butuh URL penuh)
+const toAbsolute = (href: string) => new URL(href, siteConfig.url).toString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.name,
+    ...(item.href ? { item: toAbsolute(item.href) } : {}),
+  })),
+};
+---
+
+<nav
+  aria-label="Breadcrumb"
+  class="mb-12 mt-12 font-mono text-xs uppercase tracking-wider"
+>
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    {
+      items.map((item, i) => {
+        const isLast = i === items.length - 1;
+        return (
+          <li class="flex items-center gap-x-2">
+            {item.href && !isLast ? (
+              <a
+                href={item.href}
+                class="text-text-muted hover:text-white transition-colors"
+              >
+                {item.name}
+              </a>
+            ) : (
+              <span
+                class="text-text-sec max-w-[60vw] md:max-w-none truncate"
+                aria-current={isLast ? "page" : undefined}
+              >
+                {item.name}
+              </span>
+            )}
+            {!isLast && <span class="text-white/20" aria-hidden="true">/</span>}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(jsonLd)}
+/>

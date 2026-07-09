@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import Layout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -21,9 +22,13 @@ const { Content } = await render(project);
 >
   <main class="relative z-10 max-w-3xl mx-auto px-4 md:px-8 py-16 md:py-24">
     
-    <a href="/projects" class="inline-flex items-center gap-2 font-sans text-xs text-text-muted hover:text-white uppercase tracking-wider transition-colors mb-12 mt-12">
-      ← Back to Projects
-    </a>
+    <Breadcrumb
+      items={[
+        { name: "Home", href: "/" },
+        { name: "Projects", href: "/projects" },
+        { name: project.data.title },
+      ]}
+    />
 
     <article class="prose prose-invert max-w-none prose-p:text-text-sec prose-headings:text-white prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-strong:text-white prose-ul:text-text-sec prose-ol:text-text-sec prose-li:text-text-sec prose-a:text-sage hover:prose-a:text-white prose-a:transition-colors prose-pre:bg-[#09090b] prose-pre:border prose-pre:border-white/5 prose-code:font-mono prose-code:text-text-sec prose-code:bg-[#09090b] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:border prose-img:border-white/5 prose-img:rounded-2xl prose-hr:border-white/5 prose-blockquote:text-text-sec prose-blockquote:border-white/20">
       
